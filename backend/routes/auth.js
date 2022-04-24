@@ -106,7 +106,7 @@ router.post(
 
   });
 
-//Route 2: GetLogin user details using: POST 'api/auth/getUser' - login required
+//Route 3: Get Logedin user details using: POST 'api/auth/getUser' - login required
 router.post("/getUser", fetchuser,
   async (req, res) => {
 
@@ -122,9 +122,5 @@ router.post("/getUser", fetchuser,
 
   });
 
-router.get("/", (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
-});
 
 module.exports = router;
