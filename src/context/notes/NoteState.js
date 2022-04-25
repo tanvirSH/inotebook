@@ -63,6 +63,7 @@ const NoteState = (props) => {
 
   //Add a note 
   const addNote = (title, description, tag) => {
+    //TODO: API call
     let note = {
       _id: "62652974200729a5ae11cf65",
       user: "626526ead0ef87b4afdd263e",
@@ -79,7 +80,13 @@ const NoteState = (props) => {
 
   }
   //Delete a note
-  const deleteNote = (note) => {}
+  const deleteNote = (id) => {
+    //TODO: API call
+    let newNotes = notes.filter(function(note){ 
+      return note._id != id; 
+  });
+    setNotes(newNotes)
+  }
   return (
     <NoteContext.Provider value={{ notes, setNotes, addNote,editNote, deleteNote}}>
       {props.children}
