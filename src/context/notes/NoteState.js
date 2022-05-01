@@ -9,11 +9,12 @@ const NoteState = (props) => {
 
   useEffect(() => {
     fetchAllNote();
+    // eslint-disable-next-line
   }, [])
   
   //fetch All Note
   const fetchAllNote = async () => {
-    //TODO: API call
+    // API call
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
       method: 'GET',
       headers: {
@@ -27,7 +28,7 @@ const NoteState = (props) => {
 
   //Add a note
   const addNote = async (title, description, tag) => {
-    //TODO: API call
+    // API call
     const response = await fetch(`${host}/api/notes/addnote`, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -42,27 +43,33 @@ const NoteState = (props) => {
 
   //Edit a note
   const editNote = async (id, title, description, tag) => {
+    debugger;
     // API call
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      method: 'PUT', // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json',
         'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2NTI2ZWFkMGVmODdiNGFmZGQyNjNlIn0sImlhdCI6MTY1MDc5NjI2Nn0.N0CH4-FCGgSHzlJ0uNl07JloARq77h8yxhCrBZMxMTg'
       },
       body: JSON.stringify({title, description, tag}) 
     });
-    const res = response.json();
+    const res = await response.json();
+    console.log(res);
 
-
-    let newNotes = notes.map(function (note) {
-      return note._id == id ? ({...note, [note.title]: title, [note.description]: description, [note.tag]: tag}) : note;
-    });
+    let newNotes = JSON.parse(JSON.stringify(notes));
+    newNotes.forEach(function (newNote) {
+       if(newNote._id == id){
+        newNote.title = title;
+        newNote.description = description;
+        newNote.tag = tag;
+      }
+     });
     setNotes(newNotes);
   };
 
   //Delete a note
   const deleteNote = async (id) => {
-    //TODO: API call
+    // API call
 
     const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
       method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
