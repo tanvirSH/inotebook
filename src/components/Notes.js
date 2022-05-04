@@ -7,7 +7,7 @@ const Notes = () => {
   const context = useContext(noteContext);
   const { notes, editNote } = context;
   const ref = useRef(null);
-  const refClose = useRef(null)
+  const refClose = useRef(null);
   const [note, setnote] = useState({
     _id: "",
     title: "",
@@ -24,7 +24,6 @@ const Notes = () => {
   const handleSubmit = (id) => {
     editNote(note._id, note.title, note.description, note.tag);
     refClose.current.click();
-
   };
   return (
     <>
@@ -65,6 +64,8 @@ const Notes = () => {
                     Title
                   </label>
                   <input
+                    minLength={5}
+                    required="required"
                     type="text"
                     className="form-control"
                     id="title"
@@ -79,6 +80,8 @@ const Notes = () => {
                     Description
                   </label>
                   <input
+                    minLength={5}
+                    required="required"
                     type="text"
                     className="form-control"
                     id="description"
@@ -111,15 +114,24 @@ const Notes = () => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={() =>{handleSubmit(note.id)}}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => {
+                  handleSubmit(note.id);
+                }}
+                disabled={note.title.length < 5 || note.description.length < 5}
+              >
                 Save changes
               </button>
             </div>
           </div>
         </div>
       </div>
+
       <div className="my-3">
         <h2>Your Notes!</h2>
+        {notes.length === 0 && "No notes to display!!!"}
         <div className="row">
           {notes.map((note, index) => {
             return (
