@@ -1,17 +1,25 @@
 import React, { useContext, useState } from "react";
 import noteContext from "../context/notes/noteContext";
 
-
 const Addnotes = () => {
-    const context = useContext(noteContext);
-    const {notes, addNote} = context;
-    const [note, setnote] = useState({title:'', description:'', tag: 'Default'});
-    const onchange = (e) => {
-        setnote({...note, [e.target.name]: e.target.value});
-    }
-    const handleSubmit = (e) => {
-        addNote(note.title, note.description, note.tag);
-    }
+  const context = useContext(noteContext);
+  const { notes, addNote } = context;
+  const [note, setnote] = useState({
+    title: "",
+    description: "",
+    tag: "Default",
+  });
+  const onchange = (e) => {
+    setnote({ ...note, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    addNote(note.title, note.description, note.tag);
+    setnote({
+      title: "",
+      description: "",
+      tag: "",
+    });
+  };
   return (
     <div>
       <h1>Add note</h1>
@@ -21,7 +29,10 @@ const Addnotes = () => {
             Title
           </label>
           <input
+            minLength={5}
+            required
             type="text"
+            value={note.title}
             className="form-control"
             id="title"
             name="title"
@@ -34,6 +45,9 @@ const Addnotes = () => {
             Description
           </label>
           <input
+            minLength={5}
+            required
+            value={note.description}
             type="text"
             className="form-control"
             id="description"
@@ -48,13 +62,19 @@ const Addnotes = () => {
           <input
             type="text"
             className="form-control"
+            value={note.tag}
             id="tag"
             name="tag"
             onChange={onchange}
           />
         </div>
 
-        <button type="button" className="btn btn-primary" onClick={handleSubmit}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={handleSubmit}
+          disabled={note.title.length < 5 || note.description.length < 5}
+        >
           Submit
         </button>
       </form>
