@@ -3,7 +3,7 @@ import noteContext from "../context/notes/noteContext";
 import Addnotes from "./Addnotes";
 import Noteitem from "./Noteitem";
 
-const Notes = () => {
+const Notes = (props) => {
   const context = useContext(noteContext);
   const { notes, editNote } = context;
   const ref = useRef(null);
@@ -24,10 +24,11 @@ const Notes = () => {
   const handleSubmit = (id) => {
     editNote(note._id, note.title, note.description, note.tag);
     refClose.current.click();
+    props.showAlert("Notes updated!!!", "success");
   };
   return (
     <>
-      <Addnotes />
+      <Addnotes showAlert={props.showAlert} />
       <button
         type="button"
         className="btn btn-primary d-none"
@@ -139,6 +140,7 @@ const Notes = () => {
                 key={`${note._id + index}`}
                 updatenote={updatenote}
                 note={note}
+                showAlert={props.showAlert}
               />
             );
           })}
