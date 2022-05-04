@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
     const host = "http://localhost:5000";
     const navigate = useNavigate();
-    const [credencials, setCredencials] = useState({email: "", password: ""})
+    const [credencials, setCredencials] = useState({email: "", password: ""});
     const onchange = (e) => {
         setCredencials({ ...credencials, [e.target.name]: e.target.value });
       };
