@@ -23,7 +23,7 @@ const Signup = (props) => {
           console.log(json);
           if(json.success) {
               //Save token in session
-              sessionStorage.setItem('token', JSON.stringify(json.authtoken));
+              localStorage.setItem('token', json.authToken);
               navigate("/login");
               props.showAlert("User created successfully", "success");
           }else{

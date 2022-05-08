@@ -6,11 +6,6 @@ const NoteState = (props) => {
   const initialNote = [];
 
   const [notes, setNotes] = useState(initialNote);
-
-  useEffect(() => {
-    fetchAllNote();
-    // eslint-disable-next-line
-  }, [])
   
   //fetch All Note
   const fetchAllNote = async () => {
@@ -19,7 +14,7 @@ const NoteState = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2NTI2ZWFkMGVmODdiNGFmZGQyNjNlIn0sImlhdCI6MTY1MDc5NjI2Nn0.N0CH4-FCGgSHzlJ0uNl07JloARq77h8yxhCrBZMxMTg'
+        'auth-token': localStorage.getItem('token')
       }
     });
     const json = await response.json();
@@ -33,7 +28,7 @@ const NoteState = (props) => {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2NTI2ZWFkMGVmODdiNGFmZGQyNjNlIn0sImlhdCI6MTY1MDc5NjI2Nn0.N0CH4-FCGgSHzlJ0uNl07JloARq77h8yxhCrBZMxMTg'
+        'auth-token': localStorage.getItem('token')
       },
       body: JSON.stringify({title, description, tag}) 
     });
@@ -49,7 +44,7 @@ const NoteState = (props) => {
       method: 'PUT', // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2NTI2ZWFkMGVmODdiNGFmZGQyNjNlIn0sImlhdCI6MTY1MDc5NjI2Nn0.N0CH4-FCGgSHzlJ0uNl07JloARq77h8yxhCrBZMxMTg'
+        'auth-token': localStorage.getItem('token')
       },
       body: JSON.stringify({title, description, tag}) 
     });
@@ -75,7 +70,7 @@ const NoteState = (props) => {
       method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2NTI2ZWFkMGVmODdiNGFmZGQyNjNlIn0sImlhdCI6MTY1MDc5NjI2Nn0.N0CH4-FCGgSHzlJ0uNl07JloARq77h8yxhCrBZMxMTg'
+        'auth-token': localStorage.getItem('token')
       }
     });
     const res = await response.json();
@@ -85,7 +80,7 @@ const NoteState = (props) => {
 
   return (
     <NoteContext.Provider
-      value={{ notes, setNotes, addNote, editNote, deleteNote }}
+      value={{ notes, setNotes, fetchAllNote, addNote, editNote, deleteNote }}
     >
       {props.children}
     </NoteContext.Provider>
