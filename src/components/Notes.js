@@ -1,11 +1,22 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import noteContext from "../context/notes/noteContext";
 import Addnotes from "./Addnotes";
 import Noteitem from "./Noteitem";
 
 const Notes = (props) => {
+  const navigate = useNavigate();
   const context = useContext(noteContext);
-  const { notes, editNote } = context;
+  const { notes, fetchAllNote, editNote } = context;
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      fetchAllNote();
+    }else{
+      navigate("/login");
+    }
+    
+    // eslint-disable-next-line
+  }, [])
   const ref = useRef(null);
   const refClose = useRef(null);
   const [note, setnote] = useState({
@@ -133,6 +144,7 @@ const Notes = (props) => {
       <div className="my-3">
         <h2>Your Notes!</h2>
         {notes.length === 0 && "No notes to display!!!"}
+        {notes.length != 0 && 
         <div className="row">
           {notes.map((note, index) => {
             return (
@@ -145,6 +157,7 @@ const Notes = (props) => {
             );
           })}
         </div>
+        }
       </div>
     </>
   );
