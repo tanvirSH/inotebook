@@ -1,3 +1,7 @@
+  # For database
+  - Install MongoDBCompass on your machine
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -6,13 +10,42 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm run both`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+ 
+I t will open your backen on port 5000
+
+# Login Screen -
+
+![image](https://user-images.githubusercontent.com/14922403/169716748-9438f542-17c1-471a-b4e8-b1f197c90af7.png)
+
+
+# Signup Screen -
+
+![image](https://user-images.githubusercontent.com/14922403/169716799-f9e8240d-630b-4ec7-bce5-96571504ffba.png)
+
+# Home screen (Empty note) - 
+
+![image](https://user-images.githubusercontent.com/14922403/169716888-b5f47930-c652-47a9-b474-08b42c8a5152.png)
+
+# Home screen (With note added) - 
+
+![image](https://user-images.githubusercontent.com/14922403/169716979-6dd53c30-9ee7-485a-bb47-13279471f424.png)
+
+# Edit note -
+
+![image](https://user-images.githubusercontent.com/14922403/169717012-a1277d4e-265a-4345-9439-7e062bcd2183.png)
+
+# Delete note - 
+
+![image](https://user-images.githubusercontent.com/14922403/169717040-673ee7ee-d475-4ece-af8e-4425f4ee624c.png)
+
+
 
 ### `yarn test`
 
