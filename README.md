@@ -1,3 +1,13 @@
+  Project fetures (CRUD operation with Login and signup JWT authentication added salt, token based login and fetch details)
+  # Signup
+  # Login
+  # JWT authentication with token
+  # Add Note for specific user
+  # Edit Note
+  # Delete Note
+  # Token based login and fetch noted details
+  
+  
   # For database
   - Install MongoDBCompass on your machine
 
