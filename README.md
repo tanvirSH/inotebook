@@ -5,7 +5,7 @@
   # Add Note for specific user
   # Edit Note
   # Delete Note
-  # Token based login and fetch noted details
+  # Token based login/signup user and fetch/edit/delete note.
   
   
   # For database
